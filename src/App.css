@@ -1,0 +1,203 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=PT+Sans:400,700";
+
+.App {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.List-display {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  /* text-align: center; */
+  width: 20%;
+  color: red;
+  padding: 2px 3px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.navbar {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+  background-color: rgb(181, 229, 255);
+  color: black;
+}
+.add-grocery-btn {
+  margin-left: 16px;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 4px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  background-color: rgb(34, 172, 29);
+}
+.toggle-order-btn {
+  margin-left: 16px;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 4px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  background-color: #4c49ea;
+}
+.reset-list-btn {
+  margin-left: 16px;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 4px;
+  color: black;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  background-color: #d4d4dd;
+}
+.add-grocery-div {
+  margin-top: 10px;
+}
+.input-grocery {
+  padding: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+.ag-courses_item {
+  margin: 0 auto;
+  width: 30%;
+  overflow: hidden;
+  border-radius: 28px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.ag-courses-item_link {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  background-color: #121212;
+  overflow: hidden;
+  position: relative;
+}
+
+.ag-courses-item_link:hover,
+.ag-courses-item_link:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.ag-courses-item_link:hover .ag-courses-item_bg {
+  -webkit-transform: scale(10);
+  -ms-transform: scale(10);
+  transform: scale(10);
+}
+
+.ag-courses-item_title {
+  min-height: 30px;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 30px;
+  color: #FFF;
+  z-index: 2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.flex-basis-60 {
+  flex-basis: 60%;
+}
+.flex-basis-20 {
+  flex-basis: 20%;
+}
+
+.delete-button {
+  margin-left: 20px;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgba(255, 0, 0, 0.856);
+  cursor: pointer;
+}
+
+.ag-courses-item_bg {
+  height: 128px;
+  width: 128px;
+  background-color: #f9b234;
+
+  z-index: 1;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+
+  border-radius: 50%;
+
+  -webkit-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+  background-color: #3ecd5e;
+}
+
+.ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+  background-color: #a42e03;
+}
+
+.ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+  background-color: #952aff;
+}
+
+.ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+  background-color: #cd3e94;
+}
+
+.ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+  background-color: #4c49ea;
+}
