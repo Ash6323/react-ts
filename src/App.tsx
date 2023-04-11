@@ -15,8 +15,10 @@ function App() {
           <div className="ag-courses_item">
             <div className="ag-courses-item_link">
               <div className="ag-courses-item_bg"></div>
-              <div className="ag-courses-item_title" key={index}>{groceryItem}
-                <button className="delete-button" onClick= {() => deleteByValue(groceryItem)}>Delete</button>
+              <div className="row-cols-3 ag-courses-item_title" key={index}>
+                <div className="col flex-basis-60">{groceryItem}</div>
+                <button className="col flex-basis-20 delete-button" onClick= {() => deleteByValue(groceryItem)}>Delete</button>
+                <div className="col flex-basis-20"></div>
               </div>
             </div>
           </div>
@@ -71,7 +73,6 @@ function App() {
     <div className="App">
       
       <Navbar />
-      {/* <h2 className="">The List contains:</h2> */}
       {renderList}
       <button className="toggle-order-btn" onClick={SortGroceryList}>Toggle Order</button>
       <button className="reset-list-btn" onClick={ResetGroceryList}>Reset List</button>

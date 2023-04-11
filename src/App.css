@@ -95,17 +95,6 @@
   font-size: 15px;
   background-color: #d4d4dd;
 }
-.delete-button {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
-  border-radius: 4px;
-  color: white;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  background-color: rgba(255, 0, 0, 0.856);
-  cursor: pointer;
-}
 .add-grocery-div {
   margin-top: 10px;
 }
@@ -153,10 +142,27 @@
   font-size: 30px;
   color: #FFF;
   z-index: 2;
-  position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+}
+.flex-basis-60 {
+  flex-basis: 60%;
+}
+.flex-basis-20 {
+  flex-basis: 20%;
+}
+
+.delete-button {
+  margin-left: 20px;
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgba(255, 0, 0, 0.856);
+  cursor: pointer;
 }
 
 .ag-courses-item_bg {
