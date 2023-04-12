@@ -15,10 +15,10 @@ function App() {
           <div className="ag-courses_item">
             <div className="ag-courses-item_link">
               <div className="ag-courses-item_bg"></div>
-              <div className="row-cols-3 ag-courses-item_title" key={index}>
-                <div className="col flex-basis-60">{groceryItem}</div>
-                <button className="col flex-basis-20 delete-button" onClick= {() => deleteByValue(groceryItem)}>Delete</button>
-                <div className="col flex-basis-20"></div>
+              <div className="ag-courses-item_title" key={index}>
+                <div className="flex-basis-60">{groceryItem}</div>
+                <button className="flex-basis-20 delete-button" onClick= {() => deleteByValue(groceryItem)}>Delete</button>
+                <div className="flex-basis-20"></div>
               </div>
             </div>
           </div>
@@ -89,8 +89,7 @@ function App() {
           </div>
         </div>
       </div> */}
-
-
+      
     </div>
   );
 }

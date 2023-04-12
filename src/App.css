@@ -44,7 +44,6 @@
 
 .List-display {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  /* text-align: center; */
   width: 20%;
   color: red;
   padding: 2px 3px;
@@ -71,6 +70,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   background-color: rgb(34, 172, 29);
+  cursor: pointer;
 }
 .toggle-order-btn {
   margin-left: 16px;
@@ -82,6 +82,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   background-color: #4c49ea;
+  cursor: pointer;
 }
 .reset-list-btn {
   margin-left: 16px;
@@ -94,6 +95,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   background-color: #d4d4dd;
+  cursor: pointer;
 }
 .add-grocery-div {
   margin-top: 10px;
@@ -123,7 +125,6 @@
   position: relative;
 }
 
-.ag-courses-item_link:hover,
 .ag-courses-item_link:hover {
   text-decoration: none;
   color: #FFF;
@@ -143,7 +144,7 @@
   color: #FFF;
   z-index: 2;
   display: flex;
-  justify-content: space-around;
+  position: relative;
   align-items: center;
 }
 .flex-basis-60 {
@@ -169,7 +170,7 @@
   height: 128px;
   width: 128px;
   background-color: #f9b234;
-
+  overflow: hidden;
   z-index: 1;
   position: absolute;
   top: -75px;
