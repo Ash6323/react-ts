@@ -79,15 +79,12 @@
   width: 50% !important;
 }
 .add-item-btn {
-  /* margin-left: 16px;
-  margin-top: 10px;
-  text-decoration: none;
-  padding: 6px;
-  border-radius: 4px;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px; */
+  margin-right: 5px;
   background-color: var(--add-item-button-color);
+  cursor: pointer;
+}
+.sort-items-btn {
+  background-color: var(--toggle-order-btn-color);
   cursor: pointer;
 }
 .flex-basis-70 {
@@ -97,11 +94,13 @@
   flex-basis: 20%;
 }
 .input-item-details {
+  margin-left: 10px;
+  margin-bottom: 10px;
   padding: 6px;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   border-radius: 8px;
 }
-.my-stepper {
+/* .my-stepper {
   
-}
+} */

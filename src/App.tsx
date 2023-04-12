@@ -10,24 +10,17 @@ function App() {
     id: number;
     itemName: string;
     itemDescription: string;
-    itemPrice: string;
-    itemQuantity: string;
+    itemPrice: number;
+    itemQuantity: number;
   }
 
-  const [initItemName, setitemName] = useState<string>("Apple");
-  const [initItemDescription, setitemDescription] =
-    useState<string>("Apple Description");
-  const [initItemPrice, setitemPrice] = useState<string>("25");
-  const [initItemQuantity, setitemQuantity] = useState<string>("3");
+  const [initItemName, setitemName] = useState<string>("");
+  const [initItemDescription, setitemDescription] = useState<string>("");
+  const [initItemPrice, setitemPrice] = useState<number>(Number);
+  const [initItemQuantity, setitemQuantity] = useState<number>(Number);
 
-  // const initialItem:Item = {
-  //   id: Date.now(),
-  //   itemName: itemName,
-  //   itemDescription: itemDescription,
-  //   itemPrice: itemPrice,
-  //   itemQuantity: itemQuantity
-  // }
-  const [initialItem, setInitialItem] = useState<Item>({
+  const [initialItem, setInitialItem] = useState<Item>
+  ({
     id: Date.now(),
     itemName: initItemName,
     itemDescription: initItemDescription,
@@ -35,11 +28,11 @@ function App() {
     itemQuantity: initItemQuantity,
   });
 
+  const [itemList, setItemList] = useState<Item[]>([]);
+
   const [step, setNewStep] = useState(1);
   const nextStep = () => { setNewStep(step + 1); };
   const prevStep = () => { setNewStep(step - 1); };
-
-  const [itemList, setItemList] = useState<Item[]>([initialItem]);
 
   const [isShow, invokeModal] = React.useState(false);
   const closeModal = () => invokeModal(false);
@@ -52,14 +45,49 @@ function App() {
     setitemDescription(e.target.value);
   };
   const handleChange_ItemPrice = (e: ChangeEvent<HTMLInputElement>) => {
-    setitemPrice(e.target.value);
+    setitemPrice(e.target.valueAsNumber);
   };
   const handleChange_ItemQuantity = (e: ChangeEvent<HTMLInputElement>) => {
-    setitemQuantity(e.target.value);
+    setitemQuantity(e.target.valueAsNumber);
   };
 
-  function AddItem() {
-    const newItem: Item = {
+  const [count, setCount] = useState(0);
+  function SortItemList() 
+  {
+    setCount(count + 1);
+    if(count%2 == 1)
+    {
+      itemList.sort((a, b) => a.itemName.localeCompare(b.itemName));
+      setItemList([...itemList]);
+    }
+    else if(count%2 == 0)
+    {
+      itemList.sort((a, b) => b.itemName.localeCompare(a.itemName));
+      setItemList([...itemList]);
+    }
+  }
+
+  const [search, setSearch] = useState('');
+  const filteredItems = {
+    list: itemList.filter((item) =>
+      item.itemName.toLowerCase().includes(search.toLowerCase())
+    ),
+  };
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
+  // const [isDisabled, setDisabled] = useState(false);
+  // const ItemNameValidation = () => {
+  //   if (initItemName.length >= 30 || initItemDescription.length <= 100 || initItemName.length <= 0)
+  //     setDisabled(true);
+  // }
+
+  function AddItem() 
+  {
+    const newItem: Item = 
+    {
       id: Date.now(),
       itemName: initItemName,
       itemDescription: initItemDescription,
@@ -84,23 +112,30 @@ function App() {
               <input
                 list="items-list"
                 type="text"
+                onChange={handleSearch}
                 placeholder="Search for an Item"
                 className="form-control input-item"
                 id="item-search-input"
               ></input>
               <datalist id="items-list">
-                <option value="Item1"></option>
-                <option value="Item2"></option>
-                <option value="Item3"></option>
-                <option value="Item4"></option>
-                <option value="Item5"></option>
+                {itemList.map((item) => (
+                  <div key={item.id}>
+                    <option value={item.itemName}></option>
+                  </div>
+                  ))}
               </datalist>
             </div>
             <Button
               className="add-item-btn"
               variant="success"
-              onClick={showModal}>
+              onClick={showModal}> 
               Add Item
+            </Button>
+            <Button
+              className="sort-items-btn"
+              variant="success"
+              onClick={SortItemList}>
+              Sort Items
             </Button>
             <Modal show={isShow}>
               <Modal.Header closeButton onClick={closeModal}>
@@ -114,24 +149,32 @@ function App() {
               {step === 1 && (
                 <> 
                 <Modal.Body>
+                  <div>
+                  <label>Enter Item Name:</label>
                   <input
                     className="input-item-details"
                     type="text"
                     placeholder="New Item Name"
                     onChange={handleChange_ItemName}
                   />
+                  </div>
+                  <div>
+                  <label>Enter Item Description:</label>
                   <input
                     className="input-item-details"
-                    type="text"
+                    type="textarea"
                     placeholder="New Item Description"
                     onChange={handleChange_ItemDescription}
                   />
+                  </div>
                 </Modal.Body>
                 <Modal.Footer>            
                   <Button variant="danger" onClick={closeModal}>
                     Close
                   </Button>
-                  <Button variant="dark" onClick={nextStep}>
+                  <Button variant="dark" 
+                          onClick={nextStep}
+                          disabled={initItemName.length >= 30 || initItemDescription.length <= 100 || initItemName.length <= 0}>
                     Next
                   </Button>
                 </Modal.Footer>
@@ -140,24 +183,32 @@ function App() {
               {step === 2 && (
               <>
                 <Modal.Body>
+                  <div>
+                  <label>Enter Item Price:</label>
                   <input
                     className="input-item-details"
-                    type="text"
+                    type="number"
                     placeholder="New Item Price"
                     onChange={handleChange_ItemPrice}
                   />
+                  </div>
+                  <div>
+                  <label>Enter Item Quantity:</label>
                   <input
                     className="input-item-details"
-                    type="text"
+                    type="number"
                     placeholder="New Item Quantity"
                     onChange={handleChange_ItemQuantity}
                   />
+                  </div>
                 </Modal.Body>
                 <Modal.Footer>            
                   <Button variant="danger" onClick={prevStep}>
                     Back
                   </Button>
-                  <Button variant="dark" onClick={AddItem}>     
+                  <Button variant="dark" 
+                          onClick={AddItem}
+                          disabled={initItemPrice == 0 || initItemQuantity == 0}>
                     Add Item
                   </Button>
                 </Modal.Footer>
@@ -171,7 +222,6 @@ function App() {
             <table className="table table-bordered table-striped ">
               <thead className="table-dark">
                 <tr>
-                  {/* <th scope="col">#</th> */}
                   <th scope="col">Item Name</th>
                   <th scope="col">Description</th>
                   <th scope="col">Price</th>
@@ -179,33 +229,14 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {itemList.map((item) => (
+                {filteredItems.list.map((item) => (
                   <tr key={item.id}>
-                    {/* <th scope="row">{item.id}</th> */}
                     <td>{item.itemName}</td>
                     <td>{item.itemDescription}</td>
                     <td>{item.itemPrice}</td>
                     <td>{item.itemQuantity}</td>
                   </tr>
                 ))}
-
-                {/* <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr> */}
               </tbody>
             </table>
           </div>
