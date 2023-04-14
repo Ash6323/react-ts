@@ -18,10 +18,19 @@ const AddProducts: React.FC<ItemProp> = ({propItem}) => {
   const nextStep = () => { setNewStep(step + 1); };
   const prevStep = () => { setNewStep(step - 1); };
 
+  function SetToDefault()
+  {
+    setitemName("");
+    setitemDescription("");
+    setitemPrice(0);
+    setitemQuantity(0);
+  }
+
   function AddItem()
   {
     propItem(initItemName, initItemDescription, initItemPrice, initItemQuantity);
-    
+    SetToDefault();
+    alert("Item Details Submitted Successfully");
   }
   
   return (
@@ -89,7 +98,7 @@ const AddProducts: React.FC<ItemProp> = ({propItem}) => {
             <Button className="button-spacing" variant="danger" onClick={prevStep}>Back</Button>
             <Button className="button-spacing" variant="dark" 
                     onClick={AddItem}
-                    disabled={!(initItemPrice > 0 || initItemQuantity > 0)}>
+                    disabled={!(initItemPrice > 0 && initItemQuantity > 0)}>
                     Submit
             </Button>
           </div>

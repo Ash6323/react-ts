@@ -16,34 +16,34 @@ interface IProduct
 
 const ViewProducts: React.FC<IProduct> = ({productsList}) => {
 
-    const [itemList, setItemList] = useState<ProductItem[]>(productsList);
+  const [itemList, setItemList] = useState<ProductItem[]>(productsList);
 
-    const [search, setSearch] = useState('');
-    const filteredItems = 
-    {
-      list: itemList.filter((item) =>item.item_Name.toLowerCase().includes(search.toLowerCase())),
-    };
+  const [search, setSearch] = useState('');
+  const filteredItems = 
+  {
+    list: itemList.filter((item) =>item.item_Name.toLowerCase().includes(search.toLowerCase())),
+  };
 
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => 
-    {
-      setSearch(event.target.value);
-    };
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => 
+  {
+    setSearch(event.target.value);
+  };
 
-    const [count, setCount] = useState(0);
-    function SortItemList() 
+  const [count, setCount] = useState(0);
+  function SortItemList() 
+  {
+    setCount(count + 1);
+    if(count%2 == 1)
     {
-      setCount(count + 1);
-      if(count%2 == 1)
-      {
-          itemList.sort((a, b) => a.item_Name.localeCompare(b.item_Name));
-          setItemList([...itemList]);
-      }
-      else if(count%2 == 0)
-      {
-          itemList.sort((a, b) => b.item_Name.localeCompare(a.item_Name));
-          setItemList([...itemList]);
-      }
+        itemList.sort((a, b) => a.item_Name.localeCompare(b.item_Name));
+        setItemList([...itemList]);
     }
+    else if(count%2 == 0)
+    {
+        itemList.sort((a, b) => b.item_Name.localeCompare(a.item_Name));
+        setItemList([...itemList]);
+    }
+  }
 
   return (
     <div className="container shadow">
