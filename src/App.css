@@ -1,0 +1,149 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=PT+Sans:400,700";
+
+:root {
+  --add-item-button-color: rgb(34, 172, 29);
+  --contact-button-color : rgb(95, 71, 192);
+  --toggle-order-btn-color: #4c49ea;
+  --reset-list-btn-color: #d4d4dd;
+}
+
+.App {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navbar {
+  padding-left: 10px !important;
+  padding-right: 15px !important;
+  justify-content:space-between;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+  background-color: rgb(181, 229, 255);
+  color: black;
+}
+.avatar {
+  cursor: pointer;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.wrapper {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+#sidebar {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background: #7386D5;
+  color: #fff;
+  transition: all 0.3s;
+  padding-top: 40px;
+}
+.dropdown-menu {
+  background-color: #6d7fcc !important;
+  color: #fff !important;
+}
+.dropdown-items{
+  background-color: #6d7fcc !important;
+  color: #fff !important;
+}
+.link-Class{
+  background-color: #6d7fcc !important;
+  color: #fff !important;
+  text-decoration: none;
+}
+.dropdown-items:hover {
+  background-color: #7386D5 !important;
+  color: #fff !important;
+}
+.container {
+  margin-top: 3%;
+  width: 70% !important;
+  box-shadow: 0px 0px 2px 3px rgba(97, 92, 92, 0.621);
+  border-radius: 4px 4px;
+  background-color:rgba(128, 128, 128, 0.185);
+  margin-bottom: 3%;
+}
+.stepper-container {
+  display: flex;
+  justify-content: center;
+}
+.my-stepper {
+  width: 50%;
+}
+.input-item-details {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  border-radius: 8px;
+}
+.input-row {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-spacing {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.search-add-item-div {
+  margin-top: 10% !important;
+  margin-bottom: 10px;
+}
+.flex-basis-70 {
+  flex-basis: 70%;
+}
+.input-item {
+  width: 50% !important;
+}
+.sort-items-btn {
+  
+  background-color: var(--toggle-order-btn-color);
+  cursor: pointer;
+}
+
