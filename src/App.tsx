@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Dashboard from "./components/Dashboard";
 import AddProducts from "./components/AddProduct";
 import ViewProducts from "./components/ViewProducts";
 
@@ -29,7 +30,6 @@ function App() {
       item_Quantity: itemQuantity,
     };
     setItemList([...itemList, newItem]);
-    console.log("App.tsx",itemList);
   }
 
 
@@ -43,6 +43,7 @@ function App() {
           </div>       
           <div className="col-md-10">
             <Routes>
+              <Route path="/" element= { <Dashboard/> }/>
               <Route path="Add-Product" element= { <AddProducts propItem={AddItem}/> }/>
               <Route path="View-Products" element={ <ViewProducts productsList = {itemList}/> } />
             </Routes>

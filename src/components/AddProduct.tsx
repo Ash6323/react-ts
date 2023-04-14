@@ -21,9 +21,9 @@ const AddProducts: React.FC<ItemProp> = ({propItem}) => {
   function AddItem()
   {
     propItem(initItemName, initItemDescription, initItemPrice, initItemQuantity);
-    console.log(propItem);
+    
   }
-
+  
   return (
     <div className="container shadow">
       <div className="stepper-container">
@@ -89,7 +89,7 @@ const AddProducts: React.FC<ItemProp> = ({propItem}) => {
             <Button className="button-spacing" variant="danger" onClick={prevStep}>Back</Button>
             <Button className="button-spacing" variant="dark" 
                     onClick={AddItem}
-                    disabled={initItemPrice == 0 || initItemQuantity == 0 || initItemPrice == null || initItemQuantity == null}>
+                    disabled={!(initItemPrice > 0 || initItemQuantity > 0)}>
                     Submit
             </Button>
           </div>
