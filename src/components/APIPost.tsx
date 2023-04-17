@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Button} from 'react-bootstrap';
 
-const baseURL = "https://jsonplaceholder.typicode.com/posts";
+const baseURL = "https://jsonplaceholder.typicode.com/users";
 
 const APIPost = () => {
 
-    const [sentData, setSentData] = useState({id: 0, name: "",})
+    const [sentData, setSentData] = useState({personId: 0, name: "",})
     const [data, setData] = useState<any>([]);
 
     const handleIdChange = (e:any) => 
@@ -21,16 +21,15 @@ const APIPost = () => {
     const handleSubmit = (e:any) => 
     {
         e.preventDefault();
-        
+
         axios.post(baseURL, sentData)
         .then(response => 
         {
             setData([...data, response.data]);
         })
-        sentData.id = 0;
+        sentData.personId = 0;
         sentData.name = "";
     }
-
     return (
         <>
         <div className="container shadow">
@@ -40,7 +39,8 @@ const APIPost = () => {
                     <div className="input-row">
                         <label>
                             Person ID:
-                            <input type="number" name="id" value={sentData.id}
+                            <input type="number" name="personId" value={sentData.personId}
+                            placeholder="Enter Person ID"
                             className="input-item-details" onChange={handleIdChange} />
                         </label>
                     </div>                 
@@ -48,6 +48,7 @@ const APIPost = () => {
                         <label>
                         Person Name:
                         <input type="text" name="name" value={sentData.name}
+                        placeholder="Enter Person Name"
                         className="input-item-details" onChange={handleNameChange} />
                         </label>
                     </div>           
@@ -65,7 +66,7 @@ const APIPost = () => {
                     <tbody>
                         {data.map((item: any, index: any) => (
                             <tr key={index}>
-                                <td>{item.id}</td>
+                                <td>{item.personId}</td>
                                 <td>{item.name}</td>
                             </tr>
                         ))}
