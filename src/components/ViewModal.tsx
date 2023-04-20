@@ -5,11 +5,6 @@ import axios from 'axios';
 
 const baseURL = "https://localhost:7087/api/Customer";
 
-interface SendIdProp 
-{
-  id: number,
-}
-
 const ViewModal: React.FC<any> = ({getCustomerId}) => {
 
   const [person, setPerson] = useState<Customer>();
@@ -64,7 +59,7 @@ const ViewModal: React.FC<any> = ({getCustomerId}) => {
           </table>
         </div>
         <div className="table-responsive">
-          <table className="table table-bordered table-striped ">
+          <table className="table table-bordered table-striped">
             <thead className="table-dark">
               <tr>
                 <th scope="col">Street</th>
@@ -98,12 +93,7 @@ const ViewModal: React.FC<any> = ({getCustomerId}) => {
         </div>
       </Modal.Body>
       <Modal.Footer>            
-        <button 
-            type="button" 
-            className="btn btn-danger"
-            onClick = {closeModal}>
-            Close
-        </button>
+        
       </Modal.Footer>
     </div>
   )

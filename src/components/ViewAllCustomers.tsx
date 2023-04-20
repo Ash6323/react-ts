@@ -1,34 +1,31 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import { Modal } from "react-bootstrap";
-import { useRef } from "react";
 import ViewModal from './ViewModal';
 import {Customer} from './Customer';
 import React, {useState} from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 const baseURL = "https://localhost:7087/api/Customer";
 
-// axios.interceptors.request.use(function (config) {
-//     console.log("Before Request..");
-//     return config;   
-//   }, function (error) {     
-//     console.log("Error Before Request");
-//     return Promise.reject(error);
-//   });
+axios.interceptors.request.use(function (config) {
+    console.log("Before Request..");
+    document.body.classList.add('loading-indicator');
+    return config;   
+  }, function (error) {     
+    console.log("Error Before Request");
+    return Promise.reject(error);
+  });
 
-// axios.interceptors.response.use(function (response) {
-//     console.log("After Request..");
-//     return response;
-//   }, function (error) {     
-//     console.log("Error After Request");    
-//     return Promise.reject(error);   
-//   });
-interface SendIdProps 
-{
-    id: number,
-}
+axios.interceptors.response.use(function (response) {
+    console.log("After Request..");
+    document.body.classList.remove('loading-indicator');
+    return response;
+  }, function (error) {     
+    console.log("Error After Request");    
+    return Promise.reject(error);   
+  });
 
 const  ViewAllCustomers = () => {
 
@@ -94,35 +91,36 @@ const  ViewAllCustomers = () => {
                     {persons.map((e)=>{
                         const{id, name, email, phone, street, town, city, zipcode} = e;
                     return <tr key={id}>
-                                <td onClick= {() => handleTableRowClick(id)} className="view-info">{id}</td>
-                                <td onClick= {() => handleTableRowClick(id)} className="view-info">{name}</td>
-                                <td onClick= {() => handleTableRowClick(id)} className="view-info">{email}</td>
-                                <td onClick= {() => handleTableRowClick(id)} className="view-info">{phone}</td>
-                                <td onClick= {() => handleTableRowClick(id)} className="view-info">{city}</td>
-                                <td>
-                                    <button 
-                                        type="button" 
-                                        className="btn update-btn btn-warning"
-                                        onClick={() => handleUpdateClick(id,name,email,phone,street,town,city,zipcode)}>
-                                        Update
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" 
-                                            className="btn btn-danger"
-                                            disabled = {!((street === null || street.trim() === "") && 
-                                                        (town === null || town.trim() === "") &&
-                                                        (city === null || city.trim() === "") && 
-                                                        (zipcode === null || zipcode.trim() === ""))}
-                                            onClick = {() => handleDeleteClick(id)}>Delete
-                                    </button>
-                                </td>
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{id}</td>
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{name}</td>
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{email}</td>
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{phone}</td>
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{city}</td>
+                            <td>
+                                <button 
+                                    type="button" 
+                                    className="btn update-btn btn-warning"
+                                    onClick={() => handleUpdateClick(id,name,email,phone,street,town,city,zipcode)}>
+                                    Update
+                                </button>
+                            </td>
+                            <td>
+                                <button 
+                                    type="button" 
+                                    className="btn btn-danger"
+                                    disabled = {!((street === null || street.trim() === "") && 
+                                                (town === null || town.trim() === "") &&
+                                                (city === null || city.trim() === "") && 
+                                                (zipcode === null || zipcode.trim() === ""))}
+                                    onClick = {() => handleDeleteClick(id)}>Delete
+                                </button>
+                            </td>
                             </tr>
-                    })}
+                        })}
                  </tbody>
                 </table>
             </div>
-            <div className="">
+            <div>
                 <Modal show={isView} onHide={() => invokeViewModal(false)} contentClassName="modal-container">
                     <ViewModal getCustomerId={getCustomerId} /> 
                 </Modal>

@@ -52,7 +52,7 @@ const Dashboard = () => {
                 </div>
                 <div className="col-md-4 description-container">
                     <div className="card dashboard-cards">
-                        <img src={ApiImage2} className="card-img-top" alt="API-Image"></img>
+                        <img src={ReactImage} className="card-img-top" alt="API-Image"></img>
                         <div className="card-body">
                             <h5 className="card-title">API</h5>
                             <p className="card-text">Some quick example text to build on the card title and make up 
