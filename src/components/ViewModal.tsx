@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState, useEffect } from 'react'
-import {Modal, Button} from 'react-bootstrap';
+import React, { useState } from 'react';
+import {Modal} from 'react-bootstrap';
 import {Customer} from './Customer';
 import axios from 'axios';
 
@@ -30,13 +30,11 @@ const ViewModal: React.FC<any> = ({getCustomerId}) => {
           <table className="table table-bordered table-striped">
             <thead className="table-dark">
                 <tr>
-                  <th scope="col">Id</th>
                   <th scope="col">Name</th>
                 </tr>
             </thead>
             <tbody>
                 <tr key={person?.id}>
-                  <td>{person?.id}</td>
                   <td>{person?.name}</td>
                 </tr>
             </tbody>
@@ -93,7 +91,7 @@ const ViewModal: React.FC<any> = ({getCustomerId}) => {
         </div>
       </Modal.Body>
       <Modal.Footer>            
-        
+
       </Modal.Footer>
     </div>
   )

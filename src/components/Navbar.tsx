@@ -1,11 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
+import AvatarImage from '../res/img_avatar.png';
 
 const Navbar = () => {
 return (
-        // <nav classNameName="navbar">
-        //     <h2>API Calls Using Axios</h2>
-        // </nav>
         <>
         <svg xmlns="http://www.w3.org/2000/svg" style={{display: "none"}}>
             <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -23,15 +21,14 @@ return (
 
                     <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="#" className="nav-link px-2 link-secondary">Overview</a></li>
-                        <li><a href="#" className="nav-link px-2 link-dark">Inventory</a></li>
                         <li><a href="#" className="nav-link px-2 link-dark">Customers</a></li>
-                        <li><a href="#" className="nav-link px-2 link-dark">Products</a></li>
+                        <li><a href="#" className="nav-link px-2 link-dark">Locations</a></li>
                     </ul>
 
                     <div className="dropdown text-end">
                         <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" 
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle"></img>
+                            <img src={AvatarImage} alt="mdo" width="32" height="32" className="rounded-circle"></img>
                         </a>
                         <ul className="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a className="dropdown-item" href="#">Ashwin Kumar</a></li>

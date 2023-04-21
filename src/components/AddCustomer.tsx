@@ -1,10 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import {Customer} from './Customer';
 import axios from 'axios';
+import {AppContext} from '../App';
 import {useLocation} from 'react-router-dom';
+import Loader from './Loader';
 
 const baseURL = "https://localhost:7087/api/Customer";
 
@@ -22,6 +24,7 @@ const AddCustomer = () => {
     var [submitButtonValue, setSubmitButtonValue] = useState<string>("Submit");
     const [data,setData]=useState({id:0,name:"",email:"",phone:"",street:"",town:"",city:"",zipcode:""});
     const location = useLocation();
+    const { loading } = useContext(AppContext);
 
     const newCustomer: Customer = {
         id: custId,
@@ -78,23 +81,60 @@ const AddCustomer = () => {
     const handleSubmit = (e:any) => 
     {
         e.preventDefault();
-        if(submitButtonValue=== "Submit")
+        const validName = new RegExp('^[a-zA-z]+([\s][a-zA-Z]+)*$');
+        const validEmail = new RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$');
+        const validPhone = new RegExp("^[0-9]{10}$");
+        const validZipcode = new RegExp("^[0-9]{6}$");
+        
+        if (!validName.test(custName)) 
         {
-            axios.post(baseURL, newCustomer)
-            .then(response => 
-            {
-                navigate("../Customer/ViewAllCustomers");
-            })
-            setDefaultValues();
+            alert("Please enter a valid Name");
         }
+        else if (!validEmail.test(custEmail)) 
+        {
+            alert("Please enter a valid Email ID");
+        }
+        else if (!validPhone.test(custPhone)) 
+        {
+            alert("Please enter a valid Phone Number");
+        }
+        else if (!validName.test(custStreet) && custStreet!='') 
+        {
+            alert("Please enter a valid Street");
+        }
+        else if (!validName.test(custTown) && custTown!='') 
+        {
+            alert("Please enter a valid Town");
+        }
+        else if (!validName.test(custCity) && custCity!='') 
+        {
+            alert("Please enter a valid City");
+        }
+        else if (!validZipcode.test(custZipcode) && custZipcode!='')
+        {
+            alert("Please enter a valid Zipcode");
+        }
+
         else
         {
-            axios.put(`${baseURL}/${data.id}`, newCustomer)
-            .then(response => 
+            if(submitButtonValue=== "Submit")
             {
-                navigate("../Customer/ViewAllCustomers");
-            })
-            setDefaultValues();
+                axios.post(baseURL, newCustomer)
+                .then(response => 
+                {
+                    navigate("../Customer/ViewAllCustomers");
+                })
+                setDefaultValues();
+            }
+            else
+            {
+                axios.put(`${baseURL}/${data.id}`, newCustomer)
+                .then(response => 
+                {
+                    navigate("../Customer/ViewAllCustomers");
+                })
+                setDefaultValues();
+            }
         }
     }
 
@@ -152,6 +192,7 @@ const AddCustomer = () => {
             <hr></hr>
             <div>
                 <form onSubmit={handleSubmit}>
+                    {loading && <Loader />}
                     <div className="row g-3 input-row">
                         <label className="col-md-4">
                         Name:
@@ -204,7 +245,8 @@ const AddCustomer = () => {
                         className="input-item-details" onChange={handleZipcodeChange} />
                         </label>
                     </div>           
-                    <button type="submit" className="btn submit-btn">{submitButtonValue}</button>
+                    <button type="submit" className="btn submit-btn" 
+                            >{submitButtonValue}</button>
                 </form>
             </div>
         </div>

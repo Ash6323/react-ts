@@ -2,36 +2,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import { Modal } from "react-bootstrap";
 import ViewModal from './ViewModal';
+import ConfirmDeleteModal from './ConfirmDeleteModal';
 import {Customer} from './Customer';
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import {AppContext} from '../App';
+import Loader from './Loader';
 
 const baseURL = "https://localhost:7087/api/Customer";
 
-axios.interceptors.request.use(function (config) {
-    console.log("Before Request..");
-    document.body.classList.add('loading-indicator');
-    return config;   
-  }, function (error) {     
-    console.log("Error Before Request");
-    return Promise.reject(error);
-  });
 
-axios.interceptors.response.use(function (response) {
-    console.log("After Request..");
-    document.body.classList.remove('loading-indicator');
-    return response;
-  }, function (error) {     
-    console.log("Error After Request");    
-    return Promise.reject(error);   
-  });
-
-const  ViewAllCustomers = () => {
+const ViewAllCustomers: React.FC = () => {
 
     const [persons, setPersons] = useState<Customer[]>([]);
     const [isView, invokeViewModal] = useState(false);
+    const [isShow, invokeDeleteModal] = useState(false);
     const [getCustomerId,setGetCustomerId] = useState<number>();
+    const [deletionCustomerId, setDeletionCustomerId] = useState<number>(0);
+    const { loading } = useContext(AppContext);
     const navigate = useNavigate();
     
     const getCustomers = () => {
@@ -52,7 +41,7 @@ const  ViewAllCustomers = () => {
     }
 
     const handleUpdateClick = (sendId:any,sendName:any,sendEmail:any,sendPhone:any,
-                                        sendStreet:any,sendTown:any,sendCity:any, sendZipcode:any) => 
+                            sendStreet:any,sendTown:any,sendCity:any, sendZipcode:any) => 
     { 
         navigate('../Customer/AddCustomer',
                 {state:
@@ -65,7 +54,10 @@ const  ViewAllCustomers = () => {
     }
 
     const handleDeleteClick = (id:any) => {
-        axios.delete(`${baseURL}/${id}`).then(() => 
+        // setDeletionCustomerId(id);
+        // invokeDeleteModal(true);
+        axios.delete(`${baseURL}/${id}`)
+        .then(() => 
         {
             getCustomers();
         });
@@ -75,10 +67,11 @@ const  ViewAllCustomers = () => {
         <div className="my-container shadow">
             <h3>Customer List</h3>
             <div className="table-responsive card">
+                {loading && <Loader />}
                 <table className="table table-bordered table-striped ">
                     <thead className="table-dark">
                         <tr>
-                            <th scope="col">Id</th>
+                            <th scope="col">S.No.</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
@@ -88,10 +81,10 @@ const  ViewAllCustomers = () => {
                         </tr>
                     </thead>
                  <tbody>
-                    {persons.map((e)=>{
+                    {persons.map((e,index)=>{
                         const{id, name, email, phone, street, town, city, zipcode} = e;
-                    return <tr key={id}>
-                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{id}</td>
+                    return <tr key={index}>
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{index}</td>
                             <td onClick= {() => handleTableRowClick(id)} className="view-info">{name}</td>
                             <td onClick= {() => handleTableRowClick(id)} className="view-info">{email}</td>
                             <td onClick= {() => handleTableRowClick(id)} className="view-info">{phone}</td>
@@ -124,13 +117,12 @@ const  ViewAllCustomers = () => {
                 <Modal show={isView} onHide={() => invokeViewModal(false)} contentClassName="modal-container">
                     <ViewModal getCustomerId={getCustomerId} /> 
                 </Modal>
+                <Modal show={isShow} onHide={() => invokeDeleteModal(false)} contentClassName="modal-container">
+                    <ConfirmDeleteModal deletionCustomerId = {deletionCustomerId} /> 
+                </Modal>
             </div>
         </div>
         </>
     );
 }
 export default ViewAllCustomers;
-
-function propItem(id: number) {
-    throw new Error('Function not implemented.');
-}

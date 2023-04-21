@@ -8,6 +8,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard-container shadow">
             <h1>Dashboard</h1>
+            <hr></hr>
             <div className="row card-container">
                 <div className="col-md-12">
                     <img src={Banner} alt="Banner-Image" className="dashboard-banner-img shadow"/>
@@ -35,26 +36,13 @@ const Dashboard = () => {
                     in place in the beginning. 
                 </h5>   
                 </div>
-                {/* <div className="col-md-5">
-                    <img src={ApiImage2} alt="Groceries-Image" className="dashboard-images shadow"/>
-                </div> */}
             </div>
             <div className="row card-container">
                 <div className="col-md-4 description-container">
                     <div className="card dashboard-cards">
                         <img src={ReactImage} className="card-img-top" alt="React-logo"></img>
                         <div className="card-body">
-                            <h5 className="card-title">React</h5>
-                            <p className="card-text">Some quick example text to build on the card title and make up 
-                                                    the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-4 description-container">
-                    <div className="card dashboard-cards">
-                        <img src={ReactImage} className="card-img-top" alt="API-Image"></img>
-                        <div className="card-body">
-                            <h5 className="card-title">API</h5>
+                            <h5 className="card-title">React TS</h5>
                             <p className="card-text">Some quick example text to build on the card title and make up 
                                                     the bulk of the card's content.</p>
                         </div>
@@ -64,7 +52,17 @@ const Dashboard = () => {
                     <div className="card dashboard-cards">
                         <img src={ReactImage} className="card-img-top" alt="React-logo"></img>
                         <div className="card-body">
-                            <h5 className="card-title">React</h5>
+                            <h5 className="card-title">ASP.NET Core Web API</h5>
+                            <p className="card-text">Some quick example text to build on the card title and make up 
+                                                    the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-4 description-container">
+                    <div className="card dashboard-cards">
+                        <img src={ReactImage} className="card-img-top" alt="React-logo"></img>
+                        <div className="card-body">
+                            <h5 className="card-title">Entity Framework</h5>
                             <p className="card-text">Some quick example text to build on the card title and make up 
                                                     the bulk of the card's content.</p>
                         </div>
