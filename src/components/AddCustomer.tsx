@@ -114,7 +114,6 @@ const AddCustomer = () => {
         {
             alert("Please enter a valid Zipcode");
         }
-
         else
         {
             if(submitButtonValue=== "Submit")
@@ -136,6 +135,10 @@ const AddCustomer = () => {
                 setDefaultValues();
             }
         }
+    }
+
+    const handleBackButton = () => {
+        navigate("../Customer/ViewAllCustomers");
     }
 
     useEffect(()=> {
@@ -197,21 +200,21 @@ const AddCustomer = () => {
                         <label className="col-md-4">
                         Name:
                         <input type="text" name="name" value={custName}
-                        placeholder="Enter Person Name"
+                        placeholder="Enter Name"
                         className="input-item-details" onChange={handleNameChange} required/>
                         </label>
          
                         <label className="col-md-4">
                         Email:
                         <input type="text" name="name" value={custEmail}
-                        placeholder="Enter Person Name"
+                        placeholder="Enter Email"
                         className="input-item-details" onChange={handleEmailChange} required/>
                         </label>
 
                         <label className="col-md-4">
                         Phone:
                         <input type="text" name="name" value={custPhone}
-                        placeholder="Enter Person Name"
+                        placeholder="Enter Phone No."
                         className="input-item-details" onChange={handlePhoneChange} required/>
                         </label>
                     </div>           
@@ -219,21 +222,21 @@ const AddCustomer = () => {
                         <label className="col-md-4">
                         Street:
                         <input type="text" name="name" value={custStreet}
-                        placeholder="Enter Person Name"
+                        placeholder="Enter Street"
                         className="input-item-details" onChange={handleStreetChange} />
                         </label>
 
                         <label className="col-md-4">
                         Town:
                         <input type="text" name="name" value={custTown}
-                        placeholder="Enter Person Name"
+                        placeholder="Enter Town"
                         className="input-item-details" onChange={handleTownChange} />
                         </label>
 
                         <label className="col-md-4">
                         City:
                         <input type="text" name="name" value={custCity}
-                        placeholder="Enter Person Name"
+                        placeholder="Enter City"
                         className="input-item-details" onChange={handleCityChange} />
                         </label>
                     </div>    
@@ -241,12 +244,13 @@ const AddCustomer = () => {
                         <label className="col-md-4">
                         Zipcode:
                         <input type="text" name="name" value={custZipcode}
-                        placeholder="Enter Person Name"
+                        placeholder="Enter Zipcode"
                         className="input-item-details" onChange={handleZipcodeChange} />
                         </label>
                     </div>           
                     <button type="submit" className="btn submit-btn" 
                             >{submitButtonValue}</button>
+                    <button className="btn btn-danger" onClick={handleBackButton}>Cancel</button>
                 </form>
             </div>
         </div>

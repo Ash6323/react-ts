@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {Modal} from 'react-bootstrap';
 import {Customer} from './Customer';
 import axios from 'axios';
+import Loader from './Loader';
+import {AppContext} from '../App';
 
 const baseURL = "https://localhost:7087/api/Customer";
 
@@ -11,6 +13,7 @@ const ViewModal: React.FC<any> = ({getCustomerId}) => {
   const [isShow, invokeModal] = useState<boolean>();
   const closeModal = () => invokeModal(false);
   const showModal = () => invokeModal(true);
+  const { loading } = useContext(AppContext);
 
   React.useEffect( () => {
     axios.get(`${baseURL}/${getCustomerId}`).then((response) => 
@@ -23,10 +26,11 @@ const ViewModal: React.FC<any> = ({getCustomerId}) => {
     <div>
       <Modal.Header closeButton onClick={closeModal}>
         <Modal.Title>Customer Details</Modal.Title>
+        {loading && <Loader />}
       </Modal.Header>
       <Modal.Body>
         <div>
-        <div className="table-responsive ">
+        <div className="table-responsive">
           <table className="table table-bordered table-striped">
             <thead className="table-dark">
                 <tr>

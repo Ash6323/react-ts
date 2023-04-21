@@ -13,8 +13,8 @@ const Sidebar = () => {
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic" className="sidebar-items">Customer</Dropdown.Toggle>
           <Dropdown.Menu className="sidebar-dropdown-menu ">
-            <Dropdown.Item className="dropdown-items" onClick={()=>navigate("Customer/AddCustomer")}>Add Customer</Dropdown.Item>
-            <Dropdown.Item className="dropdown-items" onClick={()=>navigate("Customer/ViewAllCustomers")}>View All Customers</Dropdown.Item>
+            <Dropdown.Item className="dropdown-items" onClick={()=>navigate("Customer/AddCustomer")}>Add New</Dropdown.Item>
+            <Dropdown.Item className="dropdown-items" onClick={()=>navigate("Customer/ViewAllCustomers")}>View List</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>

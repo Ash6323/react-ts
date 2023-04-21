@@ -157,6 +157,7 @@
 .submit-btn {
   background-color: var(--submit-btn-color) !important;
   color: white !important;
+  margin-right: 2%;
 }
 .view-info {
   vertical-align: middle;

@@ -12,7 +12,6 @@ import Loader from './Loader';
 
 const baseURL = "https://localhost:7087/api/Customer";
 
-
 const ViewAllCustomers: React.FC = () => {
 
     const [persons, setPersons] = useState<Customer[]>([]);
@@ -84,7 +83,7 @@ const ViewAllCustomers: React.FC = () => {
                     {persons.map((e,index)=>{
                         const{id, name, email, phone, street, town, city, zipcode} = e;
                     return <tr key={index}>
-                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{index}</td>
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{index+1}</td>
                             <td onClick= {() => handleTableRowClick(id)} className="view-info">{name}</td>
                             <td onClick= {() => handleTableRowClick(id)} className="view-info">{email}</td>
                             <td onClick= {() => handleTableRowClick(id)} className="view-info">{phone}</td>
