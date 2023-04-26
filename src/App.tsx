@@ -8,6 +8,8 @@ import AddMatter from './components/AddMatter';
 import ViewMattersByClients from './components/ViewMattersByClients';
 import ViewMattersForClient from './components/ViewMattersForClient';
 import ViewInvoicesForMatter from './components/ViewInvoicesForMatter';
+import ViewBillingForAttorney from './components/ViewBillingForAttorney';
+import ViewBillingByAttorneys from './components/ViewBillingByAttorneys';
 import './App.css';
 
 
@@ -29,6 +31,8 @@ function App() {
               <Route path="Matters/ByClients" element={<ViewMattersByClients />} />
               <Route path="Matters/ForClient" element={<ViewMattersForClient />} />
               <Route path="Invoices/ForMatter" element={<ViewInvoicesForMatter />} />
+              <Route path="Invoices/BillingForAttorney" element={<ViewBillingForAttorney />} />
+              <Route path="Invoices/BillingByAttorneys" element={<ViewBillingByAttorneys />} />
             </Routes>
           </div>
         </div>

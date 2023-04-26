@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import React, {useState} from "react";
-import {Matter, Jurisdiction, Client, Attorney} from './Entities';
+import {Matter, Jurisdiction, Client, Attorney, MatterByCLient} from './Entities';
 import axios from 'axios';
 
 const baseURL = "https://localhost:7269/api/Matter/GetByClients";
@@ -11,7 +11,7 @@ const attorneyBaseURL = "https://localhost:7269/api/Attorney";
 
 const ViewMattersByClients = () => {
 
-    const [matters, setMatters] = useState<Matter[]>([]);
+    const [matters, setMatters] = useState<MatterByCLient[][]>([]);
     const [jurisdictions, setJurisdictions] = useState<Jurisdiction[]>([]);
     const [attorneys,setAttorneys]=useState<Attorney[]>([]);
     const [clients,setClients]=useState<Client[]>([]);
@@ -25,26 +25,30 @@ const ViewMattersByClients = () => {
         .then((response) => 
         {
             setMatters(response.data.data);
-        });
+        })
+        .catch(error => console.log(error.data.message));
     }
     const getJurisdictions = () => {
         axios.get(jurisdictionBaseURL)
         .then((response) => 
         {
             setJurisdictions(response.data.data);
-        });
+        })
+        .catch(error => console.log(error.data.message));
     }
     const getClients = () => {
         axios.get(clientBaseURL).then((response) => 
         {
             setClients(response.data.data);
-        });
+        })
+        .catch(error => console.log(error.data.message));
     }
     const getAttorneys = () => {
         axios.get(`${attorneyBaseURL}`).then((response) => 
         {
             setAttorneys(response.data.data);
-        });
+        })
+        .catch(error => console.log(error.data.message));
     }
     const getJurisdictionById = (jurisdictionId: number): string => {
             jurisdictions.forEach(j => {
@@ -77,9 +81,9 @@ const ViewMattersByClients = () => {
     }
     React.useEffect( () => {
         getMatters();
-        getJurisdictions();
-        getClients();
-        getAttorneys();
+        // getJurisdictions();
+        // getClients();
+        // getAttorneys();
       }, []);
 
     return (
@@ -91,28 +95,55 @@ const ViewMattersByClients = () => {
                 <table className="table table-bordered table-striped ">
                     <thead className="table-dark">
                         <tr>
-                            <th scope="row">Client Name</th>
+                            <th scope="row">Client No.</th>
                             <th scope="row">Matters</th>
+                            <th scope="row">Title</th>
+                            <th scope="row">Description</th>
+                            <th scope="row">Area</th>
+                            <th scope="row">Billing Attorney</th>
+                            <th scope="row">Responsible Attorney</th>
+                            <th scope="row">Status</th>
                         </tr>
-                        {/* <tr><th scope="row">Phone</th></tr>
-                        <tr><th scope="row">City</th></tr>
-                        <tr><th scope="row">Update</th></tr>
-                        <tr><th scope="row">Delete</th></tr> */} 
                     </thead>
                     <tbody>
+                        {matters?.map((clientName, index) => {
+                            return (
+                                <React.Fragment key={index}>
+                                    <tr>
+                                        <th rowSpan={matters[index].length + 1}>{index + 1}</th>
+                                        <th colSpan={7}>{matters[index][0].clientName}</th>
+                                    </tr>
+                                    {matters[index].map((matter, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{index + 1}</td>
+                                                <td>{matter.title}</td>
+                                                <td>{matter.description}</td>
+                                                <td>{matter.jurisdictionArea}</td>
+                                                <td>{matter.billingAttorneyName}</td>
+                                                <td>{matter.responsibleAttorneyName}</td>
+                                                <td>{matter.isActive == 1 ? "Active" : "Inactive"}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </React.Fragment>
+                            )
+                        })}
+                        </tbody>
+                    {/* <tbody>
                     {matters.map((item,index)=>{
                         return <tr key={index}>
-                            {/* <td onClick= {() => handleTableRowClick(id)} className="view-info">{index+1}</td> */}
+                            <td onClick= {() => handleTableRowClick(id)} className="view-info">{index+1}</td>
                             <td >{item.title}</td>
                             <td >{item.description}</td>
-                            {/* <td className="view-info">{getJurisdictionById(item.jurisdictionId)}</td>
+                            <td className="view-info">{getJurisdictionById(item.jurisdictionId)}</td>
                             <td className="view-info">{getClientById(item.clientId)}</td>
                             <td className="view-info">{getAttorneyById(item.billingAttorneyId)}</td>
                             <td className="view-info">{getAttorneyById(item.responsibleAttorneyId)}</td>
-                            <td className="view-info">{handleMatterStatus(item.isActive)}</td> */}
+                            <td className="view-info">{handleMatterStatus(item.isActive)}</td>
                             </tr>
                         })}
-                    </tbody>
+                    </tbody> */}
                 </table>
             </div>
         </div>

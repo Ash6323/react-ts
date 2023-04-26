@@ -37,7 +37,8 @@ const AddMatter = () => {
         axios.get(jurisdictionBaseURL).then((response) => 
         {
             setJurisdictions(response.data.data);
-        });
+        })
+        .catch(error => console.log(error.data.message));
     }
     const getClients = () => {
         axios.get(clientBaseURL).then((response) => 
@@ -49,13 +50,15 @@ const AddMatter = () => {
         axios.get(`${attorneyBaseURL}/GetByJurisdiction/${jurisdictionId}`).then((response) => 
         {
             setAttorneysByJurisdiction(response.data.data);
-        });
+        })
+        .catch(error => console.log(error.data.message));
     }
     const getAttorneys = () => {
         axios.get(`${attorneyBaseURL}`).then((response) => 
         {
             setAttorneys(response.data.data);
-        });
+        })
+        .catch(error => console.log(error.data.message));
     }
     
     const handleChange = (e:any) => 

@@ -47,3 +47,8 @@ export interface InvoiceByMatter {
     hoursWorked: string,
     totalAmount: number,
 }
+export interface BillingByAttorneys {
+    id: number,
+    attorneyName: string,
+    billing: number,
+}
